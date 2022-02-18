@@ -1,4 +1,10 @@
 .home {
+  &__nav {
+    background-color: black;
+    &__title {
+      color: white;
+    }
+  }
   &__logo {
     min-width: 5.5rem;
     min-height: 3.5rem;
