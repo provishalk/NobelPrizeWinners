@@ -6,7 +6,6 @@ import Select from "react-select";
 import { FETCH_NOBEL_PRICE_WINNERS_LIST, YEAR } from "../utils/constants";
 import LaureateCard from "../Components/LaureateCard";
 import CustomCarousel from "../hoc/CustomCarousel";
-import "./Home.scss";
 import {
   CATEGORY,
   TITLE,
@@ -14,6 +13,7 @@ import {
   YEAR_LABEL,
   YEAR_RANGE,
 } from "../utils/Labels";
+import "./Home.scss";
 
 const Home = () => {
   const [nobelPrizes, setNobelPrizes] = useState([]);
@@ -78,7 +78,6 @@ const Home = () => {
     }
     return true;
   };
-  console.log("laureatesWonMoreThenOneTime", laureatesWonMoreThenOneTime);
   return (
     <div className="uk-margin-small-right uk-margin-small-left">
       <div className="uk-flex uk-margin-small-top">
@@ -97,14 +96,16 @@ const Home = () => {
       <div data-uk-grid>
         <div className="uk-width-auto@m">
           <div className="uk-padding-small uk-padding-remove-bottom">
-            <h3 className="uk-margin-bottom uk-margin-top uk-text-bold">
+            <h3 className="uk-margin-bottom uk-margin-top uk-text-bold uk-text-center">
               {WON_MORE_THEN_ONE_TIME_TITLE}
             </h3>
-            {laureatesWonMoreThenOneTime.map((laureate) => (
-              <div className="uk-margin-bottom">
-                <LaureateCard laureate={laureate} />
-              </div>
-            ))}
+            <div className="uk-flex uk-flex-column uk-flex-middle">
+              {laureatesWonMoreThenOneTime.map((laureate) => (
+                <div className="uk-margin-bottom">
+                  <LaureateCard laureate={laureate} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <div className="uk-width-expand@m">

@@ -479,4 +479,4 @@ export const YEAR = [
 
 //APIS
 export const FETCH_NOBEL_PRICE_WINNERS_LIST =
-  "http://api.nobelprize.org/v1/prize.json";
+  "https://api.nobelprize.org/v1/prize.json";
