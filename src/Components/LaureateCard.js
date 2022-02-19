@@ -2,6 +2,7 @@ import React from "react";
 import { TIMES_TAG } from "../utils/Labels";
 import { BsFillTrophyFill } from "react-icons/bs";
 import "./LaureateCard.scss";
+import { removeDoubleQuotes } from "../utils/functions";
 const LaureateCard = ({ laureate }) => {
   const isWonMoreThenOneTime = !!laureate.times;
   return (
@@ -17,7 +18,7 @@ const LaureateCard = ({ laureate }) => {
           {laureate.firstname} {laureate.surname}
         </h3>
         <p className="uk-margin-small uk-margin-medium-bottom uk-text-capitalize uk-text-success uk-text-bold ">
-          {laureate.motivation}
+          {removeDoubleQuotes(laureate.motivation)}
         </p>
       </div>
       <div className="uk-flex uk-flex-right">
