@@ -62,14 +62,18 @@ const Home = () => {
   }, [selectedCategory, selectedYear]);
 
   const getTopLaureates = (prizes) => {
+    //GETTING LAUREATES ARRAY
     const collectAllLaureates = prizes.map((prize) => {
       return prize.laureates;
     });
+    //CONVERTING MULTI_DIMENSION ARRAY TO SINGLE DIMENSION ARRAY 
+    //THEN GROUPING LAUREATES BY THERE ID TO FIND WHICH LAUREATES OCCURS MORE THEN 2 TIMES
     const laureatesGroupedById = groupBy(
       flattenDeep(collectAllLaureates),
       "id"
     );
     let wonMoreThenOneTime = [];
+    //CONVERTING OBJECT TO ARRAY AND REMOVING DUPLICATE VALUES
     for (const [key, value] of Object.entries(laureatesGroupedById)) {
       if (value && value?.length > 1) {
         if (value[0] && value[0]?.surname) {
