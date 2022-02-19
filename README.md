@@ -17,5 +17,5 @@ Your app is ready to be deployed!
 
 ## `Deployment Details`
 
-Application Deployed using Netlify
+Application Deployed using Netlify.\
 Open [Application](https://nobel-prize-winners-list-by-vishal.netlify.app/) to view it in your browser.
