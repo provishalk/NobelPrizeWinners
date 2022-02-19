@@ -1,5 +1,5 @@
 import React from "react";
-import { SHARED_TAG, TIMES_TAG } from "../utils/Labels";
+import { TIMES_TAG } from "../utils/Labels";
 import { BsFillTrophyFill } from "react-icons/bs";
 import "./LaureateCard.scss";
 const LaureateCard = ({ laureate }) => {
@@ -21,9 +21,6 @@ const LaureateCard = ({ laureate }) => {
         </p>
       </div>
       <div className="uk-flex uk-flex-right">
-        {/* <p className="uk-margin-remove uk-text-bold laureate-card__tags__share">
-          {SHARED_TAG} {laureate.share}
-        </p> */}
         {isWonMoreThenOneTime && (
           <p className="uk-margin-remove uk-text-bold uk-text-secondary uk-flex uk-flex-middle">
             <BsFillTrophyFill className="uk-margin-small-right laureate-card_trophy-icon" />
