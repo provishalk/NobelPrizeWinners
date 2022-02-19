@@ -14,7 +14,17 @@
       border-radius: 4px;
     }
   }
-  &__won-more-the-one-times {
+  &__card-border {
     border: 1px solid;
+  }
+  &_trophy-icon {
+    color: #e4c36c;
+  }
+  &__motivation {
+    display: -webkit-box;
+    max-width: 200px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }

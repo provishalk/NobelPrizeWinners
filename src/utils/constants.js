@@ -478,5 +478,4 @@ export const YEAR = [
 ];
 
 //APIS
-export const FETCH_NOBEL_PRICE_WINNERS_LIST =
-  "https://api.nobelprize.org/v1/prize.json";
+export const FETCH_NOBEL_PRICE_WINNERS_LIST = `${process.env.REACT_APP_BASE_URL}/prize.json`;

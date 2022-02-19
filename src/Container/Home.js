@@ -13,6 +13,7 @@ import {
   YEAR_LABEL,
   YEAR_RANGE,
 } from "../utils/Labels";
+import { fetchNobelPriceWinnerApi } from "../api/home";
 import "./Home.scss";
 
 const Home = () => {
@@ -22,11 +23,13 @@ const Home = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
+
   useEffect(() => {
-    axios.get(FETCH_NOBEL_PRICE_WINNERS_LIST).then((res) => {
-      // console.log("response", res.data.prizes);
-      setNobelPrizes(res.data.prizes);
-    });
+    fetchNobelPriceWinnerApi()
+      .then((data) => setNobelPrizes(data))
+      .catch((err) => {
+        console.error("err", err.response);
+      });
   }, []);
 
   useEffect(() => {
@@ -64,6 +67,7 @@ const Home = () => {
       setLaureatesWonMoreThenOneTime(wonMoreThenOneTime);
     }
   };
+
   const filterNobelPriceList = (prize) => {
     if (selectedCategory && selectedYear) {
       return (
@@ -78,6 +82,7 @@ const Home = () => {
     }
     return true;
   };
+
   return (
     <>
       <div className="uk-flex uk-padding-small home__nav">
@@ -89,7 +94,9 @@ const Home = () => {
           />
         </div>
         <div className="uk-text-bold uk-text-center">
-          <h3 className="uk-margin-remove uk-text-bold home__nav__title">{TITLE}</h3>
+          <h3 className="uk-margin-remove uk-text-bold home__nav__title">
+            {TITLE}
+          </h3>
           <p className="uk-margin-remove home__nav__title">{YEAR_RANGE}</p>
         </div>
       </div>
@@ -135,25 +142,28 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              {nobelPrizes.filter(filterNobelPriceList).map((prize) => (
-                <div className="uk-margin-medium-bottom">
-                  <div className="uk-flex uk-flex-between uk-margin-bottom">
-                    <h2 className="uk-margin-remove uk-text-capitalize">
-                      {prize.category}
-                    </h2>
-                    <h2 className="uk-margin-remove uk-text-capitalize">
-                      {prize.year}
-                    </h2>
+              {nobelPrizes
+                .filter(filterNobelPriceList)
+                .slice(0, 50)
+                .map((prize) => (
+                  <div className="uk-margin-medium-bottom">
+                    <div className="uk-flex uk-flex-between uk-margin-bottom">
+                      <h2 className="uk-margin-remove uk-text-capitalize">
+                        {prize.category}
+                      </h2>
+                      <h2 className="uk-margin-remove uk-text-capitalize">
+                        {prize.year}
+                      </h2>
+                    </div>
+                    <CustomCarousel>
+                      {prize.laureates?.map((laureate) => (
+                        <li className="uk-margin-medium-right">
+                          <LaureateCard laureate={laureate} />
+                        </li>
+                      ))}
+                    </CustomCarousel>
                   </div>
-                  <CustomCarousel>
-                    {prize.laureates?.map((laureate) => (
-                      <li className="uk-margin-medium-right">
-                        <LaureateCard laureate={laureate} />
-                      </li>
-                    ))}
-                  </CustomCarousel>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </div>
